@@ -6,17 +6,23 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 public class JpaMain {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("testJPA");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Member findMember = em.find(Member.class, 2);
-            findMember.setName("HelloJPA");
+
+            Member member = new Member();
+            member.setId(3L);
+            member.setUsername("C");
+            member.setRoleType(RoleType.ADMIN);
+            em.persist(member);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
