@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 import java.awt.*;
+import java.util.List;
 
 public class JpaMain {
 
@@ -29,8 +30,11 @@ public class JpaMain {
             em.clear();
 
             Member findMember = em.find(Member.class, member.getId());
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam.getName() = " + findTeam.getName());
+            List<Member> members = findMember.getTeam().getMembers();
+            
+            for (Member m : members) {
+                System.out.println("m.get = " + m.getUsername());
+            }
 //            Member member = new Member();
 //            member.setUsername("member1");
 //            member.setTeamId(team.getId());
