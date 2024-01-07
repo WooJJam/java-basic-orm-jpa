@@ -40,8 +40,10 @@ public class Member {
         this.username = username;
     }
 
-    public void setTeam(Team team) {
+    // Member 객체에 team 설정할때 Team객체도 같이 설정해주면 안 까먹을 수 있다!
+    public void changeTeam (Team team) {
         this.team = team;
+        team.getMembers().add(this);
     }
 
     public Long getId() {
