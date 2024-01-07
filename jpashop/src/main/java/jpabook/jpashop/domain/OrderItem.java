@@ -1,9 +1,6 @@
 package jpabook.jpashop.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class OrderItem {
@@ -11,11 +8,14 @@ public class OrderItem {
     @Id @GeneratedValue
     @Column(name="ORDER_ITEM_ID")
     private Long id;
-    @Column(name = "ORDER_ID")
-    private Long orderID;
 
-    @Column(name = "ITEM_ID")
-    private Long itemID;
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ID")
+    private Item item;
 
     private int orderPrice;
     private int count;
@@ -24,12 +24,12 @@ public class OrderItem {
         this.id = id;
     }
 
-    public void setOrderID(Long orderID) {
-        this.orderID = orderID;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public void setItemID(Long itemID) {
-        this.itemID = itemID;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public void setOrderPrice(int orderPrice) {
@@ -44,12 +44,12 @@ public class OrderItem {
         return id;
     }
 
-    public Long getOrderID() {
-        return orderID;
+    public Order getOrder() {
+        return order;
     }
 
-    public Long getItemID() {
-        return itemID;
+    public Item getItem() {
+        return item;
     }
 
     public int getOrderPrice() {
