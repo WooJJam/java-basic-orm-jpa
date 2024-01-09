@@ -15,9 +15,6 @@ import java.util.Date;
 public class Member {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) // 키본 키 생성을 데이터베이스에 위임
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
     private Long id;
 
