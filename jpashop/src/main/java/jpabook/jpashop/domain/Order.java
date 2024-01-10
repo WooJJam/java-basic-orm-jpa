@@ -18,6 +18,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
     private LocalDateTime orderDate; // ORDER_DATE, order_date
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -65,4 +69,6 @@ public class Order {
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
+
+
 }
