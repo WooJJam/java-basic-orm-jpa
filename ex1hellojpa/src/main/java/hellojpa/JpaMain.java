@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 import java.awt.*;
+import java.util.List;
 
 public class JpaMain {
 
@@ -16,6 +17,7 @@ public class JpaMain {
         tx.begin();
 
         try {
+<<<<<<< HEAD
 ////            Member findMember = em.find(Member.class, 2);
 //            List<Member> result = em.createQuery("select m from Member as m", Member.class)
 //                    .setFirstResult(1) // 1 번부터
@@ -29,27 +31,17 @@ public class JpaMain {
             team.setName("TeamA");
             em.persist(team);
 
+=======
+>>>>>>> section6
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+
             em.persist(member);
 
-            em.flush();
-            em.clear();
-
-            Member findMember = em.find(Member.class, member.getId());
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam.getName() = " + findTeam.getName());
-//            Member member = new Member();
-//            member.setUsername("member1");
-//            member.setTeamId(team.getId());
-//            em.persist(member);
-
-//            // 전혀 객체 지향 스럽지 않은 방법..
-//            Member findMember = em.find(Member.class, member.getId());
-//            Long findTeamId = findMember.getTeamId();
-//            Team findTeam = em.find(Team.class, findTeamId);
-
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+            em.persist(team);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
