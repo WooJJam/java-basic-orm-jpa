@@ -14,10 +14,15 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Member member = new Member();
-//            member.setUsername("우재민");
-//            member.setAddress(new Address("city", "street", "192-1"));
-//            member.setPeriod(new Period());
+            Address address = new Address("city", "street", "192-1");
+
+            Member member = new Member();
+            member.setUsername("우재민");
+            member.setHomeAddress(address);
+            em.persist(member);
+
+            Address copyAddress = new Address("newCity", address.getStreet(), address.getZipcode());
+            member.setHomeAddress(copyAddress); // setter를 private로 바꾸거나 삭제하여 side effect(부작용) 방지!
 
 //            em.persist(member);
             tx.commit();
