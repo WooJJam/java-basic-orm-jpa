@@ -15,8 +15,7 @@ public class Team extends BaseEntity{
     @Column(name = "USERNAME")
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "team_id")
+    @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
 
     public void setMembers(List<Member> members) {

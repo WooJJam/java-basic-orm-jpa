@@ -29,9 +29,10 @@ public class Member extends BaseEntity{
 //    @JoinColumn(name = "TEAM_ID")
 //    private Team team;
 
-    // 일대다 [1:N] 양방향.. 야매 방식임..
-    @ManyToOne
-    @JoinColumn(name="TEAM_ID", insertable = false, updatable = false)
+//    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩
+    @ManyToOne(fetch = FetchType.EAGER) // 즉시 로딩
+    // 즉시 로딩은 JPQL 에서 N+1 문제를 야기
+    @JoinColumn()
     private Team team;
 
 //    @OneToOne

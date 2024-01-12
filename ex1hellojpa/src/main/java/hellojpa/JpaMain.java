@@ -2,6 +2,8 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 public class JpaMain {
 
     public static void main(String[] args) {
@@ -12,39 +14,34 @@ public class JpaMain {
 
         try {
 
-            Member member1 = new Member();
-            member1.setUsername("member1");
-            em.persist(member1);
+           Team team = new Team();
+           team.setName("teamA");
+           em.persist(team);
 
-            Member member2 = new Member();
-            member2.setUsername("member2");
-            em.persist(member2);
+           Team team2 = new Team();
+           team.setName("teamB");
+           em.persist(team2);
 
-            em.flush();
-            em.clear();
-            
-            Member m1 = em.find(Member.class, member1.getId());
-            Member m2 = em.getReference(Member.class, member2.getId());
-            System.out.println("m1, m2 = " + (m1 instanceof Member));
-            System.out.println("m1, m2 = " + (m2 instanceof Member));
+           Member member1 = new Member();
+           member1.setUsername("member1");
+           member1.setTeam(team);
+           em.persist(member1);
 
-            Member m3 = em.find(Member.class, member1.getId());
-            System.out.println("m3.getClass() = " + m3.getClass());
+           Member member2 = new Member();
+           member2.setUsername("member2");
+           member2.setTeam(team2);
+           em.persist(member2);
 
-            em.flush();
-            em.clear();
-            
-            Member m4 = em.getReference(Member.class, member1.getId());
-            System.out.println("m4.getClass() = " + m4.getClass());
-            System.out.println("m4.getId() = " + m4.getId());
-            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(m4));
-//            Member findMember = em.getReference(Member.class, member.getId());
-//            System.out.println(findMember.getId());
-//            System.out.println("findMember.getUsername() = " + findMember.getUsername());
+           em.flush();
+           em.clear();
+
+            List<Member> members = em.createQuery("select m from Member m join fetch m.team", Member.class)
+                    .getResultList();
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
