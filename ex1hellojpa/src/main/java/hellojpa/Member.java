@@ -2,12 +2,6 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 @Entity
 //@SequenceGenerator(
 //        name = "MEMBER_SEQ_GENERATOR",
@@ -18,6 +12,9 @@ import java.util.List;
 //        name = "MEMBER_SEQ_GENERATOR",
 //        table = "MY_SEQUENCES",
 //        pkColumnName = "MEMBER_SEQ", allocationSize = 1)
+//@AttributeOverrides({
+//        @AttributeOverride(name = "id", column = @Column(name = "mem"))
+//})
 public class Member extends BaseEntity{
 
     @Id @GeneratedValue
@@ -32,17 +29,18 @@ public class Member extends BaseEntity{
 //    @JoinColumn(name = "TEAM_ID")
 //    private Team team;
 
-    // 일대다 [1:N] 양방향.. 야매 방식임..
-    @ManyToOne
-    @JoinColumn(name="TEAM_ID", insertable = false, updatable = false)
+//    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩
+    @ManyToOne(fetch = FetchType.EAGER) // 즉시 로딩
+    // 즉시 로딩은 JPQL 에서 N+1 문제를 야기
+    @JoinColumn()
     private Team team;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
-
-    @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
+//
+//    @OneToMany(mappedBy = "member")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
     public void setId(Long id) {
         this.id = id;
     }
@@ -51,17 +49,17 @@ public class Member extends BaseEntity{
         this.team = team;
     }
 
-    public void setLocker(Locker locker) {
-        this.locker = locker;
-    }
+//    public void setLocker(Locker locker) {
+//        this.locker = locker;
+//    }
 
     public Team getTeam() {
         return team;
     }
 
-    public Locker getLocker() {
-        return locker;
-    }
+//    public Locker getLocker() {
+//        return locker;
+//    }
 
     public void setUsername(String username) {
         this.username = username;
