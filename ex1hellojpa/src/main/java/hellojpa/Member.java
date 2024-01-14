@@ -2,6 +2,11 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 public class Member {
 
@@ -19,16 +24,57 @@ public class Member {
     @Embedded
     private Address homeAddress;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "city",
-                    column = @Column(name = "WORK_CITY")),
-            @AttributeOverride(name = "street",
-                    column = @Column(name = "WORK_STREET")),
-            @AttributeOverride(name = "zipcode",
-                    column = @Column(name = "WORK_ZIPCODE"))
-    })
-    private Address workAddress;
+    @ElementCollection
+    @CollectionTable(name="FAVORITE_FOOD", joinColumns =
+        @JoinColumn(name = "MEMBER_ID")
+    )
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+
+//    @ElementCollection
+//    @CollectionTable(name="ADDRESS", joinColumns =
+//        @JoinColumn(name = "MEMBER_ID")
+//    )
+//    private List<Address> addressHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="MEMBER_ID")
+    private List<AddressEntity> addressHistory = new ArrayList<>();
+
+    public List<AddressEntity> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<AddressEntity> addressHistory) {
+        this.addressHistory = addressHistory;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+    //    @Embedded
+//    @AttributeOverrides({
+//            @AttributeOverride(name = "city",
+//                    column = @Column(name = "WORK_CITY")),
+//            @AttributeOverride(name = "street",
+//                    column = @Column(name = "WORK_STREET")),
+//            @AttributeOverride(name = "zipcode",
+//                    column = @Column(name = "WORK_ZIPCODE"))
+//    })
+//    private Address workAddress;
 
 
     public Long getId() {
@@ -63,23 +109,23 @@ public class Member {
         this.homeAddress = homeAddress;
     }
 
-    public Address getWorkAddress() {
-        return workAddress;
-    }
-
-    public void setWorkAddress(Address workAddress) {
-        this.workAddress = workAddress;
-    }
+//    public Address getWorkAddress() {
+//        return workAddress;
+//    }
+//
+//    public void setWorkAddress(Address workAddress) {
+//        this.workAddress = workAddress;
+//    }
     ////    다대일 [N:1]
 ////    @ManyToOne(fetch = FetchType.LAZY)
 ////    @JoinColumn(name = "TEAM_ID")
 ////    private Team team;
 //
-////    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩
 //    @ManyToOne(fetch = FetchType.EAGER) // 즉시 로딩
-//    // 즉시 로딩은 JPQL 에서 N+1 문제를 야기
-//    @JoinColumn()
-//    private Team team;
+    // 즉시 로딩은 JPQL 에서 N+1 문제를 야기
+    @JoinColumn()
+    private Team team;
 //
 ////    @OneToOne
 ////    @JoinColumn(name = "LOCKER_ID")
