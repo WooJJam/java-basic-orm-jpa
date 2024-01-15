@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jpql" />
-        <module name="jpashop" />
-        <module name="ex1-hello-jpa" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ex1-hello-jpa" target="17" />
+      <module name="jpashop" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
