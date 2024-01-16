@@ -81,10 +81,15 @@ public class JpaMain {
             em.persist(team);
 
             Member member = new Member();
-            member.setUsername("member");
+            member.setUsername("관리자");
             member.setAge(10);
             member.setTeam(team);
+            member.setType(MemberType.ADMIN);
             em.persist(member);
+
+            Member member2 = new Member();
+            member2.setUsername("관리자2");
+            em.persist(member2);
 
             em.flush();
             em.clear();
@@ -97,8 +102,83 @@ public class JpaMain {
 //            List<Member> result = em.createQuery(query, Member.class).getResultList();
 //            String query = "select m from Member m left join m.team t on t.username = 'teamA'";
 //            List<Member> result = em.createQuery(query, Member.class).getResultList();
-            String query = "select m from Member m left join Team t on m.username = t.username";
-            List<Member> result = em.createQuery(query, Member.class).getResultList();
+//            String query = "select m from Member m left join Team t on m.username = t.username";
+//            List<Member> result = em.createQuery(query, Member.class).getResultList();
+
+            // 서브쿼리
+//            String query = "select (select avg(m1.age) from Member m1) as avgAge from Member m join Team t on m.username = t.username";
+            // From 절의 서브쿼리는 안됨.. -> 1. Join으로 해결, 2. 쿼리 2번 날리기, 3. native
+//            List<Member> result = em.createQuery(query, Member.class).getResultList();
+//            String query = "select mm.age, mm.username + " +
+//                    "from (select m.age, m.username from Member m) as mm";
+
+            /* JPQL 타입 표현과 기타식
+            *
+            String query = "select m.username, 'HELLO', TRUE from Member m "+
+                    "where m.type = :userType";
+            List<Object[]> result = em.createQuery(query)
+                    .setParameter("userType",MemberType.ADMIN)
+                    .getResultList();
+
+            for (Object[] objects : result) {
+                System.out.println("objects[0] = " + objects[0]);
+                System.out.println("objects[0] = " + objects[1]);
+                System.out.println("objects[0] = " + objects[2]);
+            }
+
+            String query = "select i from Item i where type(i) = Book";
+            em.createQuery(query,Item).clsss
+            *
+            *
+            em.flush();
+            em.clear();
+
+            * 조건식(CASE 등등)
+            String query =
+                    "select " +
+                            "case when m.age <= 10 then '학생요금'" +
+                            "     when m.age >= 60 then '경로요금'" +
+                            "     else '일반요금' end "+
+                    "from Member m";
+            List<String> result = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for (String s : result) {
+                System.out.println("s = " + s);
+            }
+
+            query = "select coalesce(m.username, '이름 없는 회원') from Member m ";
+            List<String> result2 = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for (String s : result2) {
+                System.out.println("s = " + s);
+            }
+
+            query = "select nullif(m.username, '관리자') as username " +
+                    "from Member m";
+            List<String> result3 = em.createQuery(query, String.class)
+                    .getResultList();
+            for (String s : result3) {
+                System.out.println("s = " + s);
+            }
+            * JQPL 기본 함수
+             */
+
+            String query = "select concat('a', 'b') from Member m";
+//            String query = "select 'a' || 'b' from Member m";
+            List<String> result = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for (String s : result) {
+                System.out.println("s = " + s);
+            }
+
+            query = "select function('group_concat', m.username) from Member m";
+            List<String> result2 = em.createQuery(query, String.class).getResultList();
+            for (String s : result2) {
+                System.out.println("s = " + s);
+            }
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

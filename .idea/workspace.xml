@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b2da246-18cd-49c2-bee0-5385d5e36c92" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/MemberType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/MyH2Dialect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" afterDir="false" />
@@ -17,6 +19,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,6 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "section10",
     "last_opened_file_path": "/Users/woojjam/Desktop/study/backend/sping/김영한 강의/자바 ORM 표준 JPA 프로그래밍 - 기본편/java-basic-orm-jpa",
@@ -46,6 +56,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="hellojpa.jpql" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,7 +72,7 @@
       <workItem from="1705311947161" duration="37000" />
       <workItem from="1705314369480" duration="1700000" />
       <workItem from="1705316083564" duration="839000" />
-      <workItem from="1705396124013" duration="2175000" />
+      <workItem from="1705396124013" duration="8684000" />
     </task>
     <servers />
   </component>
