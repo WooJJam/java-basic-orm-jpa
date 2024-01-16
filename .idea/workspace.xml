@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b2da246-18cd-49c2-bee0-5385d5e36c92" name="Changes" comment="">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpql/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/.idea/workspace.xml" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpql/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" afterDir="false" />
->>>>>>> c683026cf54f5e0ff202d3864c817123e1d75770
+      <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.16920471",
     "vue.rearranger.settings.migration": "true"
@@ -60,6 +57,7 @@
       <workItem from="1705311947161" duration="37000" />
       <workItem from="1705314369480" duration="1700000" />
       <workItem from="1705316083564" duration="839000" />
+      <workItem from="1705396124013" duration="2175000" />
     </task>
     <servers />
   </component>
