@@ -94,18 +94,18 @@ public class JpaMain {
 
             Member member2 = new Member();
             member2.setUsername("회원2");
-            member.setAge(20);
+            member2.setAge(20);
             member2.setTeam(teamB);
             em.persist(member2);
 
             Member member3 = new Member();
             member3.setUsername("회원3");
-            member.setAge(20);
+            member3.setAge(20);
             member3.setTeam(teamB);
             em.persist(member3);
 
-            em.flush();
-            em.clear();
+//            em.flush();
+//            em.clear();
 
 //            String query = "select m from Member m inner join m.team t";
 //            List<Member> result = em.createQuery(query, Member.class).getResultList();
@@ -243,11 +243,28 @@ public class JpaMain {
             // select count(m) from Member m
             // => 두개는 같은 쿼리문이 나감, JPQL에서 엔티티를 직접 사용하면 SQL에서 해당 엔티티의 기본 키 값을 사용
             
-            String query = "select m from Member m where m.team = :team";
-            List<Member> members = em.createQuery(query, Member.class).setParameter("team", teamB).getResultList();
-            for (Member member1 : members) {
-                System.out.println("member1 = " + member1);
-            }
+//            String query = "select m from Member m where m.team = :team";
+//            List<Member> members = em.createQuery(query, Member.class).setParameter("team", teamB).getResultList();
+//            for (Member member1 : members) {
+//                System.out.println("member1 = " + member1);
+//            }
+
+//            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+//                    .setParameter("username", "회원1")
+//                    .getResultList();
+//
+//            for (Member member1 : resultList) {
+//                System.out.println("member1 = " + member1);
+//            }
+
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member.getId());
+            System.out.println("findMember.getAge() = " + findMember.getAge());
+
+            System.out.println("resultCount = " + resultCount);
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();

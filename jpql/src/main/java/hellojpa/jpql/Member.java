@@ -3,7 +3,13 @@ package hellojpa.jpql;
 import jakarta.persistence.*;
 
 @Entity
+// 네임드 쿼리
+@NamedQuery(
+        name = "Member.findByUsername",
+        query = "select m from Member m where m.username =:username"
+)
 public class Member {
+
 
     @Id @GeneratedValue
     private Long id;
