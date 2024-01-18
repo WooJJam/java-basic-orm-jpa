@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b2da246-18cd-49c2-bee0-5385d5e36c92" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/MemberType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/MyH2Dialect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/JpaMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/java/hellojpa/jpql/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jpql/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/JpaMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/jpql/hellojpa/jpql/Member.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +38,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "section10",
+    "git-widget-placeholder": "section11",
     "last_opened_file_path": "/Users/woojjam/Desktop/study/backend/sping/김영한 강의/자바 ORM 표준 JPA 프로그래밍 - 기본편/java-basic-orm-jpa",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -72,7 +67,8 @@
       <workItem from="1705311947161" duration="37000" />
       <workItem from="1705314369480" duration="1700000" />
       <workItem from="1705316083564" duration="839000" />
-      <workItem from="1705396124013" duration="8684000" />
+      <workItem from="1705396124013" duration="9542000" />
+      <workItem from="1705486650435" duration="9266000" />
     </task>
     <servers />
   </component>

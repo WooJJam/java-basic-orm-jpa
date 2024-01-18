@@ -2,6 +2,7 @@ package hellojpa.jpql;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.List;
 
 public class JpaMain {
@@ -76,20 +77,32 @@ public class JpaMain {
 //                System.out.println("member1 = " + member1);
 //            }
 
-            Team team = new Team();
-            team.setUsername("TEAM!");
-            em.persist(team);
+            Team teamA = new Team();
+            teamA.setUsername("팀A");
+            em.persist(teamA);
+
+            Team teamB = new Team();
+            teamB.setUsername("팀B");
+            em.persist(teamB);
 
             Member member = new Member();
-            member.setUsername("관리자");
+            member.setUsername("회원1");
             member.setAge(10);
-            member.setTeam(team);
+            member.setTeam(teamA);
             member.setType(MemberType.ADMIN);
             em.persist(member);
 
             Member member2 = new Member();
-            member2.setUsername("관리자2");
+            member2.setUsername("회원2");
+            member.setAge(20);
+            member2.setTeam(teamB);
             em.persist(member2);
+
+            Member member3 = new Member();
+            member3.setUsername("회원3");
+            member.setAge(20);
+            member3.setTeam(teamB);
+            em.persist(member3);
 
             em.flush();
             em.clear();
@@ -165,27 +178,81 @@ public class JpaMain {
             * JQPL 기본 함수
              */
 
-            String query = "select concat('a', 'b') from Member m";
-//            String query = "select 'a' || 'b' from Member m";
-            List<String> result = em.createQuery(query, String.class)
-                    .getResultList();
+//            String query = "select concat('a', 'b') from Member m";
+////            String query = "select 'a' || 'b' from Member m";
+//            List<String> result = em.createQuery(query, String.class)
+//                    .getResultList();
+//
+//            for (String s : result) {
+//                System.out.println("s = " + s);
+//            }
+//
+//            query = "select function('group_concat', m.username) from Member m";
+//            List<String> result2 = em.createQuery(query, String.class).getResultList();
+//            for (String s : result2) {
+//                System.out.println("s = " + s);
+//            }
 
-            for (String s : result) {
-                System.out.println("s = " + s);
-            }
+            // 묵시적 조인이 발생하지 않게 명시적 조인을 해야함
+//            String query = "select m from Team t join t.members m";
+//            List<Collection> result = em.createQuery(query, Collection.class).getResultList();
+//            System.out.println("result = " + result);
+//            tx.commit();
+//        } catch (Exception e) {
+//            tx.rollback();
+//        } finally {
+//            em.close();
+//        }
+//            String query = "select m from Member m";
+//            List<Member> result = em.createQuery(query, Member.class).getResultList();
+//            for (Member member1 : result) {
+//                System.out.println("member1 = " + member1.getUsername() + ", "+ member1.getTeam().getUsername());
+//            }
 
-            query = "select function('group_concat', m.username) from Member m";
-            List<String> result2 = em.createQuery(query, String.class).getResultList();
-            for (String s : result2) {
-                System.out.println("s = " + s);
+//            query = "select m from Member m join fetch m.team";
+//            List<Member> result2 = em.createQuery(query, Member.class)
+//                    .getResultList();
+//
+//            for (Member member22 : result2) {
+//                System.out.println("member22 = " + member22.getUsername()+ ", "+ member22.getTeam().getUsername());
+//            }
+
+//            query = "select t from Team t join fetch t.members";
+//            List<Team> result3 = em.createQuery(query, Team.class)
+//                    .getResultList();
+//            for (Team team : result3) {
+//                System.out.println("team = " + team.getUsername()+ " | members="+ team.getMembers().size());
+//            }
+            // collection fetch join -> 일대일, 다대일은 가능
+            // but) N+1 문제가 발생.. batch size를 선언하자!!!
+//            String query = "select t from Team t";
+//            List<Team> result4 = em.createQuery(query, Team.class)
+//                    .setFirstResult(0)
+//                    .setMaxResults(2)
+//                    .getResultList();
+//
+//            System.out.println("result4.size() = " + result4.size());
+//            for (Team team : result4) {
+//                System.out.println("team = " + team.getUsername()+ " | members="+ team.getMembers().size());
+//                for (Member teamMember : team.getMembers()) {
+//                    System.out.println("--> teamMember = " + teamMember);
+//                }
+//            }
+
+            // select count(m.id) from Member m
+            // select count(m) from Member m
+            // => 두개는 같은 쿼리문이 나감, JPQL에서 엔티티를 직접 사용하면 SQL에서 해당 엔티티의 기본 키 값을 사용
+            
+            String query = "select m from Member m where m.team = :team";
+            List<Member> members = em.createQuery(query, Member.class).setParameter("team", teamB).getResultList();
+            for (Member member1 : members) {
+                System.out.println("member1 = " + member1);
             }
             tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-        } finally {
-            em.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            emf.close();
         }
-
-        emf.close();
     }
 }
